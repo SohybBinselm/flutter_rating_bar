@@ -50,7 +50,7 @@ class RatingBar extends StatefulWidget {
     this.minRating = 0,
     this.tapOnlyMode = false,
     this.updateOnDrag = false,
-    this.wrapAlignment = WrapAlignment.start,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   })  : _itemBuilder = null,
         _ratingWidget = ratingWidget,
         super(key: key);
@@ -79,7 +79,7 @@ class RatingBar extends StatefulWidget {
     this.minRating = 0,
     this.tapOnlyMode = false,
     this.updateOnDrag = false,
-    this.wrapAlignment = WrapAlignment.start,
+    this.mainAxisAlignment = MainAxisAlignment.start,
   })  : _itemBuilder = itemBuilder,
         _ratingWidget = null,
         super(key: key);
@@ -175,11 +175,11 @@ class RatingBar extends StatefulWidget {
 
   /// How the item within the [RatingBar] should be placed in the main axis.
   ///
-  /// For example, if [wrapAlignment] is [WrapAlignment.center], the item in
+  /// For example, if [mainAxisAlignment] is [MainAxisAlignment.center], the item in
   /// the RatingBar are grouped together in the center of their run in the main axis.
   ///
-  /// Defaults to [WrapAlignment.start].
-  final WrapAlignment wrapAlignment;
+  /// Defaults to [MainAxisAlignment.start].
+  final MainAxisAlignment mainAxisAlignment;
 
   final IndexedWidgetBuilder? _itemBuilder;
   final RatingWidget? _ratingWidget;
@@ -229,10 +229,9 @@ class _RatingBarState extends State<RatingBar> {
 
     return Material(
       color: Colors.transparent,
-      child: Wrap(
-      alignment: widget.wrapAlignment,
+      child: Row(
+      mainAxisAlignment: widget.mainAxisAlignment,
         textDirection: textDirection,
-        direction: widget.direction,
         children: List.generate(
           widget.itemCount,
           (index) => _buildRating(context, index),
